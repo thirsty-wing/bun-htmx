@@ -102,9 +102,9 @@ export function TableData({ page = 0 }: { page?: number }) {
         <td class="mdc-data-table__cell">I like ice cream more</td>
       </tr>
       <tr
-        hx-get={shouldShowMore ? `/table-data?page=${page + 1}` : undefined}
-        hx-trigger={shouldShowMore ? "revealed" : undefined}
-        hx-swap={shouldShowMore ? "afterend" : undefined}
+        hx-get={shouldShowMore && `/table-data?page=${page + 1}`}
+        hx-trigger={shouldShowMore && "revealed"}
+        hx-swap={shouldShowMore && "afterend"}
         class="mdc-data-table__row"
       >
         <th class="mdc-data-table__cell" scope="row">
