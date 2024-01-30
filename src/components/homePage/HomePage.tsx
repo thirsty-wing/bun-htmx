@@ -32,8 +32,11 @@ export function HomePage() {
             <script>
               mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
             </script>
-            <div class="mdc-data-table">
-              <div class="mdc-data-table__table-container">
+            <div class="mdc-data-table mdc-data-table--sticky-header">
+              <div
+                class="mdc-data-table__table-container"
+                style="max-height: 500px;"
+              >
                 <table
                   class="mdc-data-table__table"
                   aria-label="Dessert calories"

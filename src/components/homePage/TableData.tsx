@@ -23,7 +23,7 @@ export function TableData({
               shouldRequestNextPage &&
               `/table-data?page=${page + 1}&size=${size}`
             }
-            hx-trigger={shouldRequestNextPage && "revealed"}
+            hx-trigger={shouldRequestNextPage && "intersect once"}
             hx-swap={shouldRequestNextPage && "afterend"}
             class="mdc-data-table__row"
           >
