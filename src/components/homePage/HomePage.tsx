@@ -1,5 +1,6 @@
 import * as Html from "@kitajs/html";
 import BaseHtml from "@/components/baseHtml";
+import SomeText from "./SomeText";
 
 export function HomePage() {
   return (
@@ -11,6 +12,7 @@ export function HomePage() {
         </nav>
         <header class="container">
           <h1>Greetings!</h1>
+          <SomeText shouldShow={false} />
         </header>
         <main class="container">
           <ul>
@@ -43,28 +45,28 @@ export function HomePage() {
                         role="columnheader"
                         scope="col"
                       >
-                        Dessert
-                      </th>
-                      <th
-                        class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric"
-                        role="columnheader"
-                        scope="col"
-                      >
-                        Carbs (g)
-                      </th>
-                      <th
-                        class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric"
-                        role="columnheader"
-                        scope="col"
-                      >
-                        Protein (g)
+                        Full Name
                       </th>
                       <th
                         class="mdc-data-table__header-cell"
                         role="columnheader"
                         scope="col"
                       >
-                        Comments
+                        Email
+                      </th>
+                      <th
+                        class="mdc-data-table__header-cell"
+                        role="columnheader"
+                        scope="col"
+                      >
+                        City
+                      </th>
+                      <th
+                        class="mdc-data-table__header-cell"
+                        role="columnheader"
+                        scope="col"
+                      >
+                        Department
                       </th>
                     </tr>
                   </thead>

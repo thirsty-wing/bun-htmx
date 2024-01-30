@@ -7,15 +7,12 @@ import TableData from "@/components/homePage/TableData";
 const app = new Elysia()
   .use(html())
   .get("/", ({ html }) => html(<HomePage />))
-  .get(
-    "/table-data",
-    ({ html, query }) => html(<TableData page={query.page} />),
-    {
-      query: t.Object({
-        page: t.Optional(t.Numeric()),
-      }),
-    }
-  )
+  .get("/table-data", ({ html, query }) => html(<TableData {...query} />), {
+    query: t.Object({
+      size: t.Optional(t.Numeric()),
+      page: t.Optional(t.Numeric()),
+    }),
+  })
   .listen(3000);
 
 console.log(
