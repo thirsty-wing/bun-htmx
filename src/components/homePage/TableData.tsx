@@ -13,6 +13,12 @@ export function TableData({
   const supposedStartIdx = page * size;
   const supposedEndIdx = supposedStartIdx + size;
 
+  const nextPageQueryParams = [`page=${page + 1}`, `size=${size}`];
+
+  if (search) {
+    nextPageQueryParams.push(`search=${search}`);
+  }
+
   return (
     <>
       {users
@@ -30,7 +36,7 @@ export function TableData({
             <tr
               hx-get={
                 shouldRequestNextPage &&
-                `/table-data?page=${page + 1}&size=${size}&search=${search}`
+                `/table-data?${nextPageQueryParams.join("&")}`
               }
               hx-trigger={shouldRequestNextPage && "intersect once"}
               hx-swap={shouldRequestNextPage && "afterend"}
