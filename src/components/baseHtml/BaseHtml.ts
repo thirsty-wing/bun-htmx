@@ -1,3 +1,8 @@
+import fs from "fs";
+
+const htmx = fs.readFileSync("./src/static/htmx.org@1.9.10", "utf8");
+const picoCSS = fs.readFileSync("./src/static/pico-1.5.11.min.css", "utf8");
+
 export function BaseHtml({
   title,
   children,
@@ -11,9 +16,9 @@ export function BaseHtml({
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+      <script>${htmx}</script>
+      <style>${picoCSS}</style>
 
-      <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
       <title>${title}</title>
@@ -22,5 +27,6 @@ export function BaseHtml({
   </html>
 `;
 }
+//<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
 
 export default BaseHtml;

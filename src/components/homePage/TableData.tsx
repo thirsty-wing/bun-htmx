@@ -4,9 +4,11 @@ import { users } from "@/data/users";
 export function TableData({
   page = 0,
   size = 30,
+  search = "",
 }: {
   page?: number;
   size?: number;
+  search?: string;
 }) {
   const supposedStartIdx = page * size;
   const supposedEndIdx = supposedStartIdx + size;
@@ -21,7 +23,7 @@ export function TableData({
           <tr
             hx-get={
               shouldRequestNextPage &&
-              `/table-data?page=${page + 1}&size=${size}`
+              `/table-data?page=${page + 1}&size=${size}&search=${search}`
             }
             hx-trigger={shouldRequestNextPage && "intersect once"}
             hx-swap={shouldRequestNextPage && "afterend"}

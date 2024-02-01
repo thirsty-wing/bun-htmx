@@ -9,6 +9,7 @@ const app = new Elysia()
   .get("/", ({ html }) => html(<HomePage />))
   .get("/table-data", ({ html, query }) => html(<TableData {...query} />), {
     query: t.Object({
+      search: t.Optional(t.String()),
       size: t.Optional(t.Numeric()),
       page: t.Optional(t.Numeric()),
     }),

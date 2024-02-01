@@ -25,17 +25,19 @@ export function HomePage() {
               <h2>what a header</h2>
               <p>this is something special</p>
             </hgroup>
-            <button class="mdc-button foo-button">
-              <div class="mdc-button__ripple"></div>
-              <span class="mdc-button__label">Button</span>
-            </button>
-            <script>
-              mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
-            </script>
+            <input
+              type="search"
+              name="search"
+              placeholder="search for users..."
+              hx-get="/table-data"
+              hx-trigger="input changed delay:500ms, search"
+              hx-target="#table-body"
+              hx-swap="innerHTML show:top settle:1s"
+            />
             <div class="mdc-data-table mdc-data-table--sticky-header">
               <div
                 class="mdc-data-table__table-container"
-                style="max-height: 500px;"
+                style="max-height: 500px; overflow: auto;"
               >
                 <table
                   class="mdc-data-table__table"
@@ -77,6 +79,7 @@ export function HomePage() {
                     hx-get="/table-data"
                     hx-trigger="load"
                     class="mdc-data-table__content"
+                    id="table-body"
                   ></tbody>
                 </table>
               </div>
@@ -90,5 +93,14 @@ export function HomePage() {
     </BaseHtml>
   );
 }
+/*
+            <button class="mdc-button foo-button">
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">Button</span>
+            </button>
+            <script>
+              mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+            </script>
+	    */
 
 export default HomePage;
