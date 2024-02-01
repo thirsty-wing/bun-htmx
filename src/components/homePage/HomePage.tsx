@@ -22,8 +22,8 @@ export function HomePage() {
           </ul>
           <article>
             <hgroup>
-              <h2>what a header</h2>
-              <p>this is something special</p>
+              <h2>Infinite Scroll and Active Search</h2>
+              <p>with zero client-side Javascript</p>
             </hgroup>
             <input
               type="search"
@@ -32,7 +32,7 @@ export function HomePage() {
               hx-get="/table-data"
               hx-trigger="input changed delay:500ms, search"
               hx-target="#table-body"
-              hx-swap="innerHTML show:top settle:1s"
+              hx-swap="innerHTML scroll:top settle:1s"
             />
             <div class="mdc-data-table mdc-data-table--sticky-header">
               <div

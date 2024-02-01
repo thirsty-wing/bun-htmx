@@ -15,29 +15,36 @@ export function TableData({
 
   return (
     <>
-      {users.slice(supposedStartIdx, supposedEndIdx).map((user, sliceIdx) => {
-        const shouldRequestNextPage =
-          supposedStartIdx + sliceIdx === supposedEndIdx - 1 && // is last in page
-          users.length > supposedEndIdx; // is not the very last one
-        return (
-          <tr
-            hx-get={
-              shouldRequestNextPage &&
-              `/table-data?page=${page + 1}&size=${size}&search=${search}`
-            }
-            hx-trigger={shouldRequestNextPage && "intersect once"}
-            hx-swap={shouldRequestNextPage && "afterend"}
-            class="mdc-data-table__row"
-          >
-            <th class="mdc-data-table__cell" scope="row">
-              {user.fullName}
-            </th>
-            <td class="mdc-data-table__cell">{user.email}</td>
-            <td class="mdc-data-table__cell">{user.city}</td>
-            <td class="mdc-data-table__cell">{user.department}</td>
-          </tr>
-        );
-      })}
+      {users
+        .filter(
+          (user) =>
+            !search ||
+            user.fullName.toLowerCase().includes(search.toLowerCase())
+        )
+        .slice(supposedStartIdx, supposedEndIdx)
+        .map((user, sliceIdx) => {
+          const shouldRequestNextPage =
+            supposedStartIdx + sliceIdx === supposedEndIdx - 1 && // is last in page
+            users.length > supposedEndIdx; // is not the very last one
+          return (
+            <tr
+              hx-get={
+                shouldRequestNextPage &&
+                `/table-data?page=${page + 1}&size=${size}&search=${search}`
+              }
+              hx-trigger={shouldRequestNextPage && "intersect once"}
+              hx-swap={shouldRequestNextPage && "afterend"}
+              class="mdc-data-table__row"
+            >
+              <th class="mdc-data-table__cell" scope="row">
+                {user.fullName}
+              </th>
+              <td class="mdc-data-table__cell">{user.email}</td>
+              <td class="mdc-data-table__cell">{user.city}</td>
+              <td class="mdc-data-table__cell">{user.department}</td>
+            </tr>
+          );
+        })}
     </>
   );
 }
