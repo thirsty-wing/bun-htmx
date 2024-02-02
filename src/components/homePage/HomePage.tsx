@@ -1,30 +1,12 @@
 import * as Html from "@kitajs/html";
-import BaseHtml from "@/components/baseHtml";
-import SomeText from "./SomeText";
+import Layout from "@/components/layout";
 
 export function HomePage() {
   return (
-    <BaseHtml title="Home">
-      <body>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-        </nav>
-        <header class="container">
-          <h1>Greetings!</h1>
-          <SomeText shouldShow={false} />
-        </header>
-        <main class="container">
-          <ul>
-            <li>cards</li>
-            <li>envelopes</li>
-            <li>stamps</li>
-          </ul>
-          <article>
-            <hgroup>
-              <h2>Infinite Scroll and Active Search</h2>
-              <p>with zero client-side Javascript</p>
-            </hgroup>
+    <Layout title="Home">
+      <body style="height: 100vh; display: flex;">
+        <main class="container-fluid" style="display: flex; flex: 1;">
+          <article style="display: flex; flex-direction: column; flex: 1;">
             <input
               type="search"
               name="search"
@@ -32,65 +14,30 @@ export function HomePage() {
               hx-get="/table-data"
               hx-trigger="input changed delay:500ms, search"
               hx-target="#table-body"
-              hx-swap="innerHTML scroll:top settle:1s"
+              hx-swap="innerHTML show:top settle:1s"
             />
-            <div class="mdc-data-table mdc-data-table--sticky-header">
-              <div
-                class="mdc-data-table__table-container"
-                style="max-height: 500px; overflow: auto;"
-              >
-                <table
-                  class="mdc-data-table__table"
-                  aria-label="Dessert calories"
-                >
-                  <thead>
-                    <tr class="mdc-data-table__header-row">
-                      <th
-                        class="mdc-data-table__header-cell"
-                        role="columnheader"
-                        scope="col"
-                      >
-                        Full Name
-                      </th>
-                      <th
-                        class="mdc-data-table__header-cell"
-                        role="columnheader"
-                        scope="col"
-                      >
-                        Email
-                      </th>
-                      <th
-                        class="mdc-data-table__header-cell"
-                        role="columnheader"
-                        scope="col"
-                      >
-                        City
-                      </th>
-                      <th
-                        class="mdc-data-table__header-cell"
-                        role="columnheader"
-                        scope="col"
-                      >
-                        Department
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    hx-get="/table-data"
-                    hx-trigger="load"
-                    class="mdc-data-table__content"
-                    id="table-body"
-                  ></tbody>
-                </table>
-              </div>
+            <div style="display: flex; flex: 1; overflow: auto;">
+              <table>
+                <thead style="position: sticky; top: 0;">
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Department</th>
+                  </tr>
+                </thead>
+                <tbody
+                  hx-get="/table-data"
+                  hx-trigger="load"
+                  id="table-body"
+                  style="overflow: auto;"
+                ></tbody>
+              </table>
             </div>
           </article>
         </main>
-        <footer class="container">
-          <h1>Thank you for visiting!</h1>
-        </footer>
       </body>
-    </BaseHtml>
+    </Layout>
   );
 }
 /*

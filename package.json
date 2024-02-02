@@ -3,12 +3,11 @@
   "version": "1.0.50",
   "scripts": {
     "test": "xss-scan",
-    "dev": "bun run --watch src/index.tsx"
+    "dev": "bun run --watch src/App.tsx"
   },
   "dependencies": {
     "@elysiajs/html": "0.8.0",
     "@kitajs/html": "3.1.0",
-    "@picocss/pico": "1.5.11",
     "elysia": "0.8.14",
     "htmx.org": "1.9.10"
   },
