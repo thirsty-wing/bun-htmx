@@ -16,10 +16,7 @@ export function HomePage() {
               hx-target="#table-body"
               hx-swap="innerHTML scroll:#table-container:top"
             />
-            <div
-              id="table-container"
-              style="display: flex; flex: 1; overflow: auto;"
-            >
+            <div id="table-container" style="display: flex; overflow: auto;">
               <table>
                 <thead style="position: sticky; top: 0;">
                   <tr>
