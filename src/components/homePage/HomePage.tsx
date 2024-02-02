@@ -17,7 +17,7 @@ export function HomePage() {
               hx-swap="innerHTML scroll:#table-container:top"
             />
             <div id="table-container" style="display: flex; overflow: auto;">
-              <table>
+              <table style="table-layout: fixed;">
                 <thead style="position: sticky; top: 0;">
                   <tr>
                     <th>Full Name</th>
@@ -40,14 +40,5 @@ export function HomePage() {
     </Layout>
   );
 }
-/*
-            <button class="mdc-button foo-button">
-              <div class="mdc-button__ripple"></div>
-              <span class="mdc-button__label">Button</span>
-            </button>
-            <script>
-              mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
-            </script>
-	    */
 
 export default HomePage;
