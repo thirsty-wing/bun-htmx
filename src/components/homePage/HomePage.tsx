@@ -14,9 +14,12 @@ export function HomePage() {
               hx-get="/table-data"
               hx-trigger="input changed delay:500ms, search"
               hx-target="#table-body"
-              hx-swap="innerHTML show:top settle:1s"
+              hx-swap="innerHTML scroll:#table-container:top"
             />
-            <div style="display: flex; flex: 1; overflow: auto;">
+            <div
+              id="table-container"
+              style="display: flex; flex: 1; overflow: auto;"
+            >
               <table>
                 <thead style="position: sticky; top: 0;">
                   <tr>

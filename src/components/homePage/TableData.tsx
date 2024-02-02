@@ -40,14 +40,11 @@ export function TableData({
               }
               hx-trigger={shouldRequestNextPage && "intersect once"}
               hx-swap={shouldRequestNextPage && "afterend"}
-              class="mdc-data-table__row"
             >
-              <th class="mdc-data-table__cell" scope="row">
-                {user.fullName}
-              </th>
-              <td class="mdc-data-table__cell">{user.email}</td>
-              <td class="mdc-data-table__cell">{user.city}</td>
-              <td class="mdc-data-table__cell">{user.department}</td>
+              <th>{user.fullName}</th>
+              <td>{user.email}</td>
+              <td>{user.city}</td>
+              <td>{user.department}</td>
             </tr>
           );
         })}
