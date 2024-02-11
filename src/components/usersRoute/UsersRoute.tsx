@@ -4,16 +4,9 @@ import TableData from "./TableData";
 
 export function UsersRoute({
   query,
-  headers,
 }: {
   query?: { q?: string; size?: number; page?: number };
-  headers?: { "hx-request"?: boolean };
 }) {
-  // just return a table data page if it is a hx-request
-  if (headers?.["hx-request"]) {
-    return <TableData page={query?.page} size={query?.size} q={query?.q} />;
-  }
-
   return (
     <Layout title="Home">
       <body style="height: 100vh; display: flex;">
