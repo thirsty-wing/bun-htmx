@@ -2,7 +2,7 @@ import * as Html from "@kitajs/html";
 import Layout from "@/components/layout";
 import TableData from "./TableData";
 
-export function HomePage({
+export function UsersRoute({
   query,
   headers,
 }: {
@@ -54,4 +54,4 @@ export function HomePage({
   );
 }
 
-export default HomePage;
+export default UsersRoute;

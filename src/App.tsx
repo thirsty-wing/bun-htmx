@@ -2,7 +2,7 @@ import { Elysia, t } from "elysia";
 import { html } from "@elysiajs/html";
 import { swagger } from "@elysiajs/swagger";
 import * as Html from "@kitajs/html";
-import HomePage from "@/components/homePage";
+import UsersRoute from "@/components/usersRoute";
 
 const app = new Elysia()
   .use(html())
@@ -10,7 +10,7 @@ const app = new Elysia()
   .get("/", ({ set }) => {
     set.redirect = "/users";
   })
-  .get("/users", ({ html, ...props }) => html(<HomePage {...props} />), {
+  .get("/users", ({ html, ...props }) => html(<UsersRoute {...props} />), {
     query: t.Object({
       q: t.Optional(t.String()),
       size: t.Optional(t.Numeric()),
