@@ -8,7 +8,7 @@ export async function BaseHtml({
 }: {
   title: string;
   children: JSX.Element | JSX.Element[];
-}): Promise<JSX.Element> {
+}): Promise<string> {
   return `
   <!DOCTYPE html>
   <html lang="en" hx-boost="true">

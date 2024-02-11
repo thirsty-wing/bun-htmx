@@ -3,15 +3,14 @@ import { html } from "@elysiajs/html";
 import { swagger } from "@elysiajs/swagger";
 import * as Html from "@kitajs/html";
 import HomePage from "@/components/homePage";
-import TableData from "@/components/homePage/TableData";
 
 const app = new Elysia()
   .use(html())
   .use(swagger())
-  .get("/", ({ html, query }) => html(<HomePage {...query} />), {
-    query: t.Object({ q: t.Optional(t.String()) }),
+  .get("/", ({ set }) => {
+    set.redirect = "/users";
   })
-  .get("/table-data", ({ html, query }) => html(<TableData {...query} />), {
+  .get("/users", ({ html, ...props }) => html(<HomePage {...props} />), {
     query: t.Object({
       q: t.Optional(t.String()),
       size: t.Optional(t.Numeric()),

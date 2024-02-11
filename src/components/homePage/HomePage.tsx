@@ -1,11 +1,17 @@
 import * as Html from "@kitajs/html";
 import Layout from "@/components/layout";
+import TableData from "./TableData";
 
-export function HomePage({ q = "" }: { q?: string }) {
-  const filterProps = [];
-
-  if (q) {
-    filterProps.push(`q=${q}`);
+export function HomePage({
+  query,
+  headers,
+}: {
+  query?: { q?: string; size?: number; page?: number };
+  headers?: { "hx-request"?: boolean };
+}) {
+  // just return a table data page if it is a hx-request
+  if (headers?.["hx-request"]) {
+    return <TableData page={query?.page} size={query?.size} q={query?.q} />;
   }
 
   return (
@@ -19,12 +25,12 @@ export function HomePage({ q = "" }: { q?: string }) {
             type="search"
             name="q"
             placeholder="search for users..."
-            hx-get={`/table-data`}
+            hx-get={`/users`}
             hx-target="#table-body"
             hx-trigger="input changed delay:500ms, search"
             hx-swap="innerHTML scroll:#table-container:top"
-            hx-push-url="#"
-            value={q}
+            hx-push-url="true"
+            value={query?.q}
           />
           <div id="table-container" style="display: flex; overflow: auto;">
             <table style="table-layout: fixed;">
@@ -37,14 +43,9 @@ export function HomePage({ q = "" }: { q?: string }) {
                   <th>Shirt Size</th>
                 </tr>
               </thead>
-              <tbody
-                hx-get={`/table-data${
-                  filterProps.length ? "?" : ""
-                }${filterProps.join(",")}`}
-                hx-trigger="load"
-                id="table-body"
-                style="overflow: auto;"
-              ></tbody>
+              <tbody id="table-body" style="overflow: auto;">
+                <TableData q={query?.q} />
+              </tbody>
             </table>
           </div>
         </main>

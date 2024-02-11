@@ -34,7 +34,7 @@ export function TableData({
             <tr
               hx-get={
                 shouldRequestNextPage &&
-                `/table-data?${nextPageQueryParams.join("&")}`
+                `/users?${nextPageQueryParams.join("&")}`
               }
               hx-trigger={shouldRequestNextPage && "intersect once"}
               hx-swap={shouldRequestNextPage && "afterend"}
