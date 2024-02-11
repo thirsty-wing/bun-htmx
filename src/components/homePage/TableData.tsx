@@ -4,28 +4,26 @@ import { users } from "@/data/users";
 export function TableData({
   page = 0,
   size = 30,
-  search = "",
+  q = "",
 }: {
   page?: number;
   size?: number;
-  search?: string;
+  q?: string;
 }) {
   const supposedStartIdx = page * size;
   const supposedEndIdx = supposedStartIdx + size;
 
   const nextPageQueryParams = [`page=${page + 1}`, `size=${size}`];
 
-  if (search) {
-    nextPageQueryParams.push(`search=${search}`);
+  if (q) {
+    nextPageQueryParams.push(`q=${q}`);
   }
 
   return (
     <>
       {users
         .filter(
-          (user) =>
-            !search ||
-            user.fullName.toLowerCase().includes(search.toLowerCase())
+          (user) => !q || user.fullName.toLowerCase().includes(q.toLowerCase())
         )
         .slice(supposedStartIdx, supposedEndIdx)
         .map((user, sliceIdx) => {
@@ -45,6 +43,7 @@ export function TableData({
               <td>{user.email}</td>
               <td>{user.city}</td>
               <td>{user.department}</td>
+              <td>{user.shirtSize}</td>
             </tr>
           );
         })}
