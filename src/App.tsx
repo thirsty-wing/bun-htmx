@@ -1,11 +1,13 @@
 import { Elysia, t } from "elysia";
 import { html } from "@elysiajs/html";
+import { swagger } from "@elysiajs/swagger";
 import * as Html from "@kitajs/html";
 import HomePage from "@/components/homePage";
 import TableData from "@/components/homePage/TableData";
 
 const app = new Elysia()
   .use(html())
+  .use(swagger())
   .get("/", ({ html, query }) => html(<HomePage {...query} />), {
     query: t.Object({ q: t.Optional(t.String()) }),
   })
