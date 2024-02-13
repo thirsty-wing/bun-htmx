@@ -4,6 +4,7 @@ import { swagger } from "@elysiajs/swagger";
 import * as Html from "@kitajs/html";
 import UsersRoute from "@/components/usersRoute";
 import TableData from "@/components/usersRoute/TableData";
+import User from "@/components/user";
 
 const app = new Elysia()
   .use(html())
@@ -32,6 +33,9 @@ const app = new Elysia()
       }),
     }
   )
+  .get("/users/:id", ({ html, params }) => {
+    return html(<User id={params.id} />);
+  })
   .listen(3000);
 
 console.log(

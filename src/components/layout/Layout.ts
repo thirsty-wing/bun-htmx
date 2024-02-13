@@ -8,10 +8,10 @@ export async function BaseHtml({
 }: {
   title: string;
   children: JSX.Element | JSX.Element[];
-}): Promise<string> {
+}) {
   return `
   <!DOCTYPE html>
-  <html lang="en" hx-boost="true">
+  <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,16 @@ export async function BaseHtml({
       <style>${await picoCSS.text()}</style>
       <style>${await customCSS.text()}</style>
 
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
       <title>${title}</title>
     </head>
-    ${children}
+    <body style="height: 100vh; display: flex;">
+      ${children}
+    </body>
   </html>
 `;
 }
-//<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+// <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+// <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+// <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
 export default BaseHtml;

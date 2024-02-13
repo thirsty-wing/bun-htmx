@@ -39,7 +39,9 @@ export function TableData({
               hx-trigger={shouldRequestNextPage && "intersect once"}
               hx-swap={shouldRequestNextPage && "afterend"}
             >
-              <th>{user.fullName}</th>
+              <th>
+                <a href={`/users/${user.id}`}>{user.fullName}</a>
+              </th>
               <td>{user.email}</td>
               <td>{user.city}</td>
               <td>{user.department}</td>

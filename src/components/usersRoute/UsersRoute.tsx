@@ -9,11 +9,18 @@ export function UsersRoute({
 }) {
   return (
     <Layout title="Home">
-      <body style="height: 100vh; display: flex;">
-        <main
-          class="container-fluid"
-          style="display: flex; flex-direction: column; flex: 1;"
-        >
+      <main
+        class="container-fluid"
+        style="display: flex; flex-direction: row; flex: 1; gap: 24px;"
+      >
+        <aside style="border-right: solid gray; width: 100px;">
+          <nav>
+            <ul>
+              <a href="/users">Users</a>
+            </ul>
+          </nav>
+        </aside>
+        <div style="display: flex; flex-direction: column; flex: 1">
           <input
             type="search"
             name="q"
@@ -41,8 +48,8 @@ export function UsersRoute({
               </tbody>
             </table>
           </div>
-        </main>
-      </body>
+        </div>
+      </main>
     </Layout>
   );
 }
