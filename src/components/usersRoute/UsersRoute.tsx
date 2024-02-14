@@ -29,7 +29,7 @@ export function UsersRoute({
             hx-target="#table-body"
             hx-trigger="input changed delay:500ms, search"
             hx-swap="innerHTML scroll:#table-container:top"
-            hx-push-url="true"
+            hx-replace-url="true"
             value={query?.q}
           />
           <div id="table-container" style="display: flex; overflow: auto;">
