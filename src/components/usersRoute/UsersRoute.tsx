@@ -3,9 +3,11 @@ import Layout from "@/components/layout";
 import TableData from "./TableData";
 
 export function UsersRoute({
-  query,
+  q = "",
+  tees = new Set(),
 }: {
-  query?: { q?: string; size?: number; page?: number };
+  q?: string;
+  tees?: Set<string>;
 }) {
   return (
     <Layout title="Home">
@@ -21,17 +23,47 @@ export function UsersRoute({
           </nav>
         </aside>
         <div style="display: flex; flex-direction: column; flex: 1">
-          <input
-            type="search"
-            name="q"
-            placeholder="search for users..."
-            hx-get={`/users`}
-            hx-target="#table-body"
-            hx-trigger="input changed delay:500ms, search"
-            hx-swap="innerHTML scroll:#table-container:top"
-            hx-replace-url="true"
-            value={query?.q}
-          />
+          <form>
+            <div class="grid">
+              <input
+                type="search"
+                name="q"
+                placeholder="search for users..."
+                hx-get="/users"
+                hx-target="#table-body"
+                hx-trigger="input changed delay:500ms, submit"
+                hx-swap="innerHTML scroll:#table-container:top"
+                hx-replace-url="true"
+                value={q}
+              />
+              <input type="submit" value="Apply Filters" />
+            </div>
+            <fieldset>
+              <legend>Choose tee shirt size filter:</legend>
+              <input name="xstee" type="checkbox" checked={tees.has("xstee")} />
+              <label for="xstee">XS</label>
+              <input name="stee" type="checkbox" checked={tees.has("stee")} />
+              <label for="stee">S</label>
+              <input name="mtee" type="checkbox" checked={tees.has("mtee")} />
+              <label for="mtee">M</label>
+              <input name="ltee" type="checkbox" checked={tees.has("ltee")} />
+              <label for="ltee">L</label>
+              <input name="xltee" type="checkbox" checked={tees.has("xltee")} />
+              <label for="xltee">XL</label>
+              <input
+                name="xxltee"
+                type="checkbox"
+                checked={tees.has("xxltee")}
+              />
+              <label for="xxltee">2XL</label>
+              <input
+                name="xxxltee"
+                type="checkbox"
+                checked={tees.has("xxxltee")}
+              />
+              <label for="xxxltee">3XL</label>
+            </fieldset>
+          </form>
           <div id="table-container" style="display: flex; overflow: auto;">
             <table style="table-layout: fixed;">
               <thead style="position: sticky; top: 0;">
@@ -44,7 +76,7 @@ export function UsersRoute({
                 </tr>
               </thead>
               <tbody id="table-body" style="overflow: auto;">
-                <TableData q={query?.q} />
+                <TableData q={q} />
               </tbody>
             </table>
           </div>

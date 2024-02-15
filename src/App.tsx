@@ -14,27 +14,65 @@ const app = new Elysia()
   })
   .get(
     "/users",
-    ({ html, query, headers }) => {
+    ({ query, headers }) => {
+      const tees = new Set<string>();
+      if (query.xstee) {
+        tees.add("xstee");
+      }
+      if (query.stee) {
+        tees.add("stee");
+      }
+      if (query.mtee) {
+        tees.add("mtee");
+      }
+      if (query.ltee) {
+        tees.add("ltee");
+      }
+      if (query.xltee) {
+        tees.add("xltee");
+      }
+      if (query.xxltee) {
+        tees.add("xxltee");
+      }
+      if (query.xxxltee) {
+        tees.add("xxxltee");
+      }
+
+      console.log("tees", tees);
+      console.log("query", query);
+
       if (headers["hx-request"]) {
-        return html(
-          <TableData page={query?.page} size={query?.size} q={query?.q} />
+        return (
+          <TableData
+            page={query?.page}
+            size={query?.size}
+            q={query?.q}
+            tees={tees}
+          />
         );
       }
-      return html(<UsersRoute query={query} />);
+      return <UsersRoute q={query?.q} tees={tees} />;
     },
     {
       query: t.Object({
         q: t.Optional(t.String()),
         size: t.Optional(t.Numeric()),
         page: t.Optional(t.Numeric()),
+        xstee: t.Optional(t.Literal("on")),
+        stee: t.Optional(t.Literal("on")),
+        mtee: t.Optional(t.Literal("on")),
+        ltee: t.Optional(t.Literal("on")),
+        xltee: t.Optional(t.Literal("on")),
+        xxltee: t.Optional(t.Literal("on")),
+        xxxltee: t.Optional(t.Literal("on")),
       }),
       headers: t.Object({
         "hx-request": t.Optional(t.Literal("true")),
       }),
     }
   )
-  .get("/users/:id", ({ html, params }) => {
-    return html(<User id={params.id} />);
+  .get("/users/:id", ({ params }) => {
+    return <User id={params.id} />;
   })
   .listen(3000);
 

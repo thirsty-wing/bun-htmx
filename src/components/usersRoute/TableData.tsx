@@ -5,10 +5,12 @@ export function TableData({
   page = 0,
   size = 30,
   q = "",
+  tees = new Set(),
 }: {
   page?: number;
   size?: number;
   q?: string;
+  tees?: Set<string>;
 }) {
   const supposedStartIdx = page * size;
   const supposedEndIdx = supposedStartIdx + size;
