@@ -1,5 +1,7 @@
-const htmx = Bun.file("./src/static/htmx.org@1.9.10");
-const picoCSS = Bun.file("./src/static/pico-1.5.11.css");
+const htmx = Bun.file("./node_modules/htmx.org/dist/htmx.min.js");
+const picoCSS = Bun.file(
+  "./node_modules/@picocss/pico/css/pico.indigo.min.css"
+);
 const customCSS = Bun.file("./src/static/custom.css");
 
 export async function BaseHtml({
