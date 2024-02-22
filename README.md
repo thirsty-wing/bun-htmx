@@ -1,5 +1,7 @@
 # Bun htmx
 
+NOTE: work halting here for the forseeable future. This project has been converted to nestjs and is now worked on here https://github.com/thirsty-wing/nest-htmx
+
 Exploratory project, targeted mainly at making a POC project with htmx in a way
 that is ergonomic and familiar for React developers
 
